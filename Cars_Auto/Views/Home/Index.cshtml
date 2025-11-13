@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Car>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (!Model.Any())
+{
+    <div class="alert alert-dismissible alert-warning mt-3">
+        <h4 class="alert-heading">No Car!</h4>
+        <p class="mb-0">No car Add yet. </p>
+    </div>
+}
+else{
+    <div class="row mt-5 g-4 ">
+        @foreach (var car in Model)
+        {
+            <div class="col-lg-6 col-md-12 mt-3">
+                <div class="card border-primary mb-3 text-decoration-none"  style="max-width: 30rem;">
+                    <a asp-action="Detalies" asp-controller="Cars" asp-route-Id="@car.Id">
+                        <div class="card-body" style="background-image:url(@($"{FileSiting.ImagePath}/{car.cover}") );background-size: cover; background-position: center; height: 400px;width:630px ;">
+                            <div class="d-flex align-items-end h-100">
+                                <span class="badge bg-primary fs-6">@car.Categoriey?.Name</span>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <div class="card-footer text-muted d-flex justify-content-between align-items-center">
+                      <div>
+                            <h4>@car.BrandName</h4>
+                            <h5>Price:@car.Price</h5>
+
+                      </div>
+                      <div>
+                            <h5>@car.Name</h5>
+
+                            <form asp-controller="Purchase" asp-action="Buy" method="post">
+                                <input type="hidden" name="carId" value="@car.Id" />
+                                <button type="submit" class="btn btn-success">Buy Now</button>
+                            </form>
+
+
+                       
+                      </div>  
+                        
+                    </div>
+
+                </div>
+
+            </div>
+    }
+        </div>
+    
+}

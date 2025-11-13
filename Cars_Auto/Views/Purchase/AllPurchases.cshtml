@@ -1,0 +1,52 @@
+﻿@model IEnumerable<PurchaseVM>
+
+@{
+    ViewData["title"] = "All Purchases";
+}
+
+<h2 class="mt-3">All Purchases (Admin)</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning mt-3">
+        <h4>No cars sold yet!</h4>
+    </div>
+}
+else
+{
+    <table class="table table-bordered table-lg table-hover mt-3">
+        <thead class="table-success">
+            <tr >
+                <th>Buyer</th>
+                <th>Car</th>
+                <th>Brand</th>
+                <th>Category</th>
+                <th>Country</th>
+                <th>Price</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr class="">
+                    <td class="text-white">@p.BuyerName</td>
+                    <td class="text-white">@p.CarName</td>
+                    <td class="text-white">@p.BrandName</td>
+                    <td class="text-white">@p.CategoryName</td>
+                    <td class="text-white">@p.Country</td>
+                    <td class="text-success">@p.FinalPrice $</td>
+                    <td class="text-white">@p.PurchaseDate.ToString("yyyy-MM-dd")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<style>
+    .table td,
+    .table th {
+        padding: 20px; /* تزود أو تقلل الرقم */
+    }
+
+</style>

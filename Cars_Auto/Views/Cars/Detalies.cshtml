@@ -1,0 +1,110 @@
+﻿ @model Car
+ @{
+ 	ViewData["title"] = Model.Name;
+ }
+
+ <div class="card car-card  mb-3 mt-5 ">
+
+    <div class="card-body p-0">
+        <div class="row g-0 align-items-center">
+            <div class="col-md-7 px-5 py-5">
+
+                <h1 class="car-brand text-primary">@Model.BrandName</h1>
+                <h3 class="car-name">@Model.Name</h3>
+                     <span class="badge bg-primary fs-5 mb-4">@Model.Categoriey?.Name</span>
+                     <p class="car-desc fs-5">@Model.Description</p>
+               
+         </div>
+            <div class="col-md-5 d-flex justify-content-center position-relative">
+                <img class="car-image" src="@($"{FileSiting.ImagePath}/{Model.cover}")" />
+            </div>
+         </div>
+     </div>
+ </div>
+
+<!-- الكارت التاني للتفاصيل -->
+<div class="card car-card mb-4">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Details</h4>
+    </div>
+    <div class="card-body">
+        <div class="row text-center">
+            <div class="col-md-6 mb-3">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body">
+                        <h5 class="text-muted">Price</h5>
+                        <h4 class="fw-bold text-primary">@Model.Price</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body">
+                        <h5 class="text-muted">Country</h5>
+                        <h4 class="fw-bold">@Model.Country</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- صور الجاليري -->
+        @if (Model.Images != null && Model.Images.Any())
+        {
+            <div class="row mt-3">
+                @foreach (var img in Model.Images)
+                {
+                    <div class="col-md-4 mb-3">
+                        <div class="card shadow-sm">
+                            <img class="card-img-top img-fluid rounded"
+                                 src="@($"{FileSiting.ImagePath}/{img.ImageUrl}")"
+                                 style="height:180px; object-fit:cover;" />
+                        </div>
+                    </div>
+                }
+            </div>
+
+        }
+        else
+        {
+            <p class="text-muted">No gallery images uploaded.</p>
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+		<script src="~/js/form-images.js"></script>
+}
+
+<style>
+    .car-card {
+        background: #e0e0e0; /* خلفية فاتحة */
+        border-radius: 15px;
+        overflow: visible;
+        position: relative;
+    }
+
+    .car-brand {
+        color: #0092ff;
+        font-weight: 700;
+    }
+
+    .car-name {
+        color: #222;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .car-desc {
+        font-size: 1.1rem;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    .car-image {
+        width: 700px;
+        transform: translateX(90px) translateY(-20px); /* الصورة طالعة يمين */
+        filter: drop-shadow(0 15px 25px rgba(0,0,0,0.5)); /* ظل 3D */
+        transition: transform 0.4s ease;
+    }
+   </style>
