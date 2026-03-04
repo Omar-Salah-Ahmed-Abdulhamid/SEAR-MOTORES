@@ -36,8 +36,8 @@ namespace Cars_Auto.Data
             modelBuilder.Entity<User>().
                 HasData(new User[]
                 {
-                    new User{Id=1,Name="Omar Salah",Email="OmarSalah@gamil.com",Password="1234",PhoneNumber = "0100000000",Role="Admin" },
-                    new User{Id=2,Name="Admin",Email="Admin@gamil.com",Password="Admin1234",PhoneNumber = "0100000000",Role="Admin" }
+                    new User{Id=1,Name="Omar Salah",Email="",Password="1234",PhoneNumber = "0100000000",Role="Admin" },
+                    new User{Id=2,Name="Admin",Email="",Password="Admin1234",PhoneNumber = "0100000000",Role="Admin" }
 
                 });
         }
